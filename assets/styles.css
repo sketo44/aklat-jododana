@@ -500,3 +500,10 @@ body > .sheet { position: fixed; inset: auto 0 0 0; margin: 0 auto; z-index: 45;
 body.has-sheet { padding-bottom: min(52dvh, 460px); }
 @media (min-width: 761px) { body.has-sheet { padding-bottom: 92px; } }
 .orderbar.is-under { display: none; }
+
+/* Order panel as a plain fixed element (works on older iOS Safari without <dialog>). */
+body > .sheet:not([hidden]) { display: flex; }
+body > .sheet[hidden] { display: none; }
+body > .sheet .frieze { flex: none; }
+body > .sheet { padding-bottom: env(safe-area-inset-bottom); background: var(--plaster-hi); }
+@media (prefers-reduced-motion: no-preference) { body > .sheet:not([hidden]) { animation: rise .35s var(--ease); } }

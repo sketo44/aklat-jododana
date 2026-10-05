@@ -273,18 +273,19 @@ function initOrder() {
     setQty(b.dataset.key, (order[b.dataset.key] || 0) + 1);
   });
   // Non-modal panel: the page keeps scrolling and the add buttons keep working while it is open.
-  const openSheet = () => { sheet.show(); document.body.classList.add("has-sheet"); bar.classList.add("is-under"); sheet.querySelector("#order-close").focus({ preventScroll: true }); };
-  sheet.addEventListener("close", () => { document.body.classList.remove("has-sheet"); bar.classList.remove("is-under"); });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && sheet.open) sheet.close(); });
+  // Plain element, not <dialog>, so it opens the same on every phone browser.
+  const openSheet = () => { sheet.hidden = false; document.body.classList.add("has-sheet"); bar.classList.add("is-under"); sheet.querySelector("#order-close").focus({ preventScroll: true }); };
+  const closeSheet = () => { sheet.hidden = true; document.body.classList.remove("has-sheet"); bar.classList.remove("is-under"); };
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !sheet.hidden) closeSheet(); });
   bar.querySelector("button").addEventListener("click", openSheet);
   sheet.addEventListener("click", (e) => {
     const q = e.target.closest("[data-q]");
     if (q) setQty(q.dataset.q, (order[q.dataset.q] || 0) + Number(q.dataset.d));
   });
-  document.getElementById("order-close").addEventListener("click", () => sheet.close());
+  document.getElementById("order-close").addEventListener("click", closeSheet);
   document.getElementById("order-clear").addEventListener("click", () => {
     Object.keys(order).forEach((k) => delete order[k]); saveOrder(); renderMenu(getLang());
-    sheet.close();
+    closeSheet();
   });
   window.addEventListener("storage", (e) => { if (e.key === "order") { try { order = JSON.parse(e.newValue || "{}"); } catch { order = {}; } renderMenu(getLang()); } });
 }
