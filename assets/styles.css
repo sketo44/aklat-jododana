@@ -466,16 +466,6 @@ body.has-orderbar { padding-bottom: 92px; }
 .sheet__total > span:first-child { color: var(--ink-soft); font-size: .9rem; }
 .sheet__total .price { font-size: 1.6rem; }
 
-/* Nearest branch */
-.branches-head { display: flex; align-items: end; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; max-width: none; }
-.near { display: grid; gap: 8px; justify-items: end; }
-html[dir="ltr"] .near { justify-items: start; }
-.near-msg { font-size: .9rem; color: var(--ink-soft); max-width: 40ch; min-height: 1.4em; }
-.near-msg.is-err { color: #6a0f0a; font-weight: 600; }
-.near-tag { margin-top: 6px; color: var(--ink-soft); font-size: .95rem; }
-.near-tag b { display: inline-block; background: var(--maroon); color: var(--sign); padding: 3px 10px; font-weight: 600; font-size: .85rem; margin-inline-end: 6px; }
-.branch { transition: background-color .4s var(--ease); }
-.branch.is-near h3 { color: var(--maroon); }
 
 /* Variant rows share columns so the add buttons line up */
 .item__prices { display: grid; grid-template-columns: repeat(3, max-content); justify-content: start; align-items: center; gap: 8px 12px; }

@@ -56,8 +56,6 @@ const T = {
     "order.title": "طلبي", "order.lead": "قائمة لك تعرضها على الموظف وقت الطلب. ما تنرسل لأي أحد، وتبقى محفوظة في جوالك.",
     "order.total": "المجموع التقريبي", "order.clear": "مسح الكل", "order.close": "إغلاق", "order.empty": "ما أضفت شي للحين. اضغط أضف جنب أي طبق.",
     "order.less": "إنقاص", "order.more": "زيادة", "order.confirmClear": "متأكد تبي تمسح الطلب كامل؟",
-    "near.btn": "أقرب فرع لي", "near.busy": "نحدد موقعك...", "near.badge": "الأقرب لك", "near.km": "كم",
-    "near.denied": "ما قدرنا نوصل لموقعك. فعّل خدمة الموقع للمتصفح وجرّب مرة ثانية.", "near.fail": "ما قدرنا نحدد موقعك الحين. جرّب مرة ثانية.",
     "wa.head": "طلب حجز من الموقع", "wa.name": "الاسم", "wa.phone": "الجوال", "wa.branch": "الفرع",
     "wa.type": "النوع", "wa.date": "التاريخ", "wa.time": "الوقت", "wa.guests": "عدد الأشخاص", "wa.notes": "ملاحظات"
   },
@@ -113,8 +111,6 @@ const T = {
     "order.title": "My order", "order.lead": "A list to show the staff when you order. It is not sent anywhere and stays saved on your phone.",
     "order.total": "Estimated total", "order.clear": "Clear all", "order.close": "Close", "order.empty": "Nothing added yet. Tap Add next to any dish.",
     "order.less": "Decrease", "order.more": "Increase", "order.confirmClear": "Clear the whole order?",
-    "near.btn": "Nearest branch", "near.busy": "Finding your location...", "near.badge": "Nearest to you", "near.km": "km",
-    "near.denied": "We could not get your location. Allow location access for the browser and try again.", "near.fail": "We could not find your location right now. Try again.",
     "wa.head": "Booking request from the website", "wa.name": "Name", "wa.phone": "Mobile", "wa.branch": "Branch",
     "wa.type": "Type", "wa.date": "Date", "wa.time": "Time", "wa.guests": "Guests", "wa.notes": "Notes"
   }
@@ -290,39 +286,6 @@ function initOrder() {
   window.addEventListener("storage", (e) => { if (e.key === "order") { try { order = JSON.parse(e.newValue || "{}"); } catch { order = {}; } renderMenu(getLang()); } });
 }
 
-// Nearest branch
-function initNearest() {
-  const btn = document.getElementById("near-btn");
-  if (!btn) return;
-  const msg = document.getElementById("near-msg");
-  const km = (a, b) => {
-    const R = 6371, r = Math.PI / 180, dLat = (b[0] - a[0]) * r, dLng = (b[1] - a[1]) * r;
-    const h = Math.sin(dLat / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dLng / 2) ** 2;
-    return 2 * R * Math.asin(Math.sqrt(h));
-  };
-  if (!("geolocation" in navigator)) { btn.hidden = true; return; }
-  btn.addEventListener("click", () => {
-    const t = T[getLang()];
-    btn.disabled = true; msg.textContent = t["near.busy"]; msg.classList.remove("is-err");
-    navigator.geolocation.getCurrentPosition((pos) => {
-      const me = [pos.coords.latitude, pos.coords.longitude];
-      const lang = getLang(), tt = T[lang];
-      const branches = [...document.querySelectorAll(".branch[data-lat]")].map((el) => ({ el, d: km(me, [+el.dataset.lat, +el.dataset.lng]) })).sort((a, b) => a.d - b.d);
-      branches.forEach(({ el, d }, i) => {
-        el.classList.toggle("is-near", i === 0);
-        let tag = el.querySelector(".near-tag");
-        if (!tag) { tag = document.createElement("p"); tag.className = "near-tag"; el.querySelector("h3").after(tag); }
-        tag.innerHTML = `${i === 0 ? `<b>${tt["near.badge"]}</b> ` : ""}<span class="num">${fmtNum(d < 10 ? d.toFixed(1) : Math.round(d), lang)} ${tt["near.km"]}</span>`;
-      });
-      msg.textContent = ""; btn.disabled = false;
-      branches[0].el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
-    }, (err) => {
-      const tt = T[getLang()];
-      msg.textContent = err.code === 1 ? tt["near.denied"] : tt["near.fail"];
-      msg.classList.add("is-err"); btn.disabled = false;
-    }, { enableHighAccuracy: false, timeout: 12000, maximumAge: 300000 });
-  });
-}
 
 let catObserver;
 function trackCats() {
@@ -416,5 +379,4 @@ document.addEventListener("DOMContentLoaded", () => {
   initReveal();
   initBooking();
   initOrder();
-  initNearest();
 });
