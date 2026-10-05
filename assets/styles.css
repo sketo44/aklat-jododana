@@ -507,3 +507,9 @@ body > .sheet[hidden] { display: none; }
 body > .sheet .frieze { flex: none; }
 body > .sheet { padding-bottom: env(safe-area-inset-bottom); background: var(--plaster-hi); }
 @media (prefers-reduced-motion: no-preference) { body > .sheet:not([hidden]) { animation: rise .35s var(--ease); } }
+
+/* Panel layout: header and clear button stay put; only the dish list scrolls. */
+body > .sheet .sheet__in { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+body > .sheet .sheet__head, body > .sheet .sheet__lead, body > .sheet .sheet__foot { flex: none; }
+body > .sheet .order-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; border-top: 1px solid rgb(42 26 18 / .15); }
+body > .sheet .sheet__foot { padding-top: 12px; margin-top: 0; border-top: 1px solid rgb(42 26 18 / .15); }
