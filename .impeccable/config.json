@@ -1,0 +1,18 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-05T13:49:51.662Z",
+        "reason": "Claude triage: flagged elements are full-bleed sections (hero, band, callout) whose inner .wrap and section padding inset the text; verified in desktop/mobile captures"
+      }
+    ]
+  }
+}

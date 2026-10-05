@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>المنيو | أكلات جدودنا</title>
+<meta name="description" content="منيو أكلات جدودنا في بريدة بالأسعار: قصيميات، لحوم، دجاج، مشاوي، صاجيات، سلطات وحلويات.">
+<meta name="theme-color" content="#6c2721">
+<link rel="preload" href="assets/fonts/reemkufi-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+<script src="assets/app.js" defer></script>
+</head>
+<body data-title="meta.title.menu">
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="mark" href="index.html" data-i18n="brand">أكلات جدودنا</a>
+    <ul class="nav__links">
+      <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+      <li><a href="menu.html" aria-current="page" data-i18n="nav.menu">المنيو</a></li>
+      <li><a href="reservations.html" data-i18n="nav.book">الحجز</a></li>
+    </ul>
+    <button class="lang" type="button"><i class="ph ph-translate" aria-hidden="true"></i><span data-i18n="lang">English</span></button>
+  </div>
+</header>
+
+<main>
+  <section class="pagehead on-maroon">
+    <div class="wrap pagehead__in">
+      <h1 class="sign-word ignite" data-i18n="menu.title">المنيو</h1>
+      <p data-i18n="menu.lead">أكلات شعبية ومشاوي وصاجيات وحلا. الأسعار بالريال السعودي حسب المنيو الحالي وقد تتغير.</p>
+    </div>
+    <div class="frieze" aria-hidden="true"></div>
+  </section>
+  <nav class="cats" aria-label="أقسام المنيو">
+    <div class="wrap"><ul class="cats__list" id="cats"></ul></div>
+  </nav>
+  <div class="wrap" id="menu"><noscript><p style="padding:48px 0">فعّل JavaScript لعرض المنيو، أو اتصل على 016 384 4000.</p></noscript></div>
+  <section class="callout" aria-labelledby="callout-h">
+    <div class="wrap callout__in">
+      <div>
+        <h2 id="callout-h" data-i18n="callout.title">عندك عزيمة أو طلعة عايلة؟</h2>
+        <p data-i18n="callout.lead">احجز طاولتك أو مناسبتك قبل لا تجي، ونجهز لك المكان.</p>
+      </div>
+      <a class="btn" href="reservations.html"><i class="ph ph-calendar-check" aria-hidden="true"></i><span data-i18n="cta.book">احجز طاولة</span></a>
+    </div>
+  </section>
+</main>
+
+<div class="orderbar" id="orderbar" hidden>
+  <button type="button" class="orderbar__btn">
+    <span class="orderbar__l"><i class="ph ph-note-pencil" aria-hidden="true"></i><b data-i18n="order.bar">طلبي</b><span data-count class="num"></span></span>
+    <span class="orderbar__r"><span class="orderbar__go" data-i18n="order.view">عرض طلبي</span><i class="ph ph-caret-up" aria-hidden="true"></i></span>
+  </button>
+</div>
+<dialog class="sheet" id="order-sheet" aria-labelledby="order-h">
+  <div class="sheet__in">
+    <div class="sheet__head">
+      <h2 id="order-h" data-i18n="order.title">طلبي</h2>
+      <button type="button" class="sheet__x" id="order-close" data-i18n-label="order.close" aria-label="إغلاق"><i class="ph ph-x" aria-hidden="true"></i></button>
+    </div>
+    <p class="sheet__lead" data-i18n="order.lead">قائمة لك تعرضها على الموظف وقت الطلب. ما تنرسل لأي أحد، وتبقى محفوظة في جوالك.</p>
+    <ul class="order-list" id="order-list"></ul>
+    <div class="sheet__foot">
+      <button type="button" class="btn btn--ghost" id="order-clear"><i class="ph ph-trash" aria-hidden="true"></i><span data-i18n="order.clear">مسح الكل</span></button>
+    </div>
+  </div>
+  <div class="frieze" aria-hidden="true"></div>
+</dialog>
+
+<footer class="footer on-maroon">
+  <div class="frieze" aria-hidden="true"></div>
+  <div class="wrap footer__in">
+    <div>
+      <a class="mark" href="index.html" data-i18n="brand">أكلات جدودنا</a>
+      <p data-i18n="footer.about">مطعم شعبي في بريدة يقدم أكلات القصيم ونجد.</p>
+      <div class="social">
+        <a href="https://www.snapchat.com/@gododana" target="_blank" rel="noopener" aria-label="Snapchat @gododana"><i class="ph ph-snapchat-logo" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/61562399023446/" target="_blank" rel="noopener" aria-label="Facebook"><i class="ph ph-facebook-logo" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div>
+      <h3 data-i18n="footer.visit">زورونا</h3>
+      <ul>
+        <li><a href="menu.html" data-i18n="nav.menu">المنيو</a></li>
+        <li><a href="reservations.html" data-i18n="nav.book">الحجز</a></li>
+        <li><a href="index.html#branches" data-i18n="branches.title">الفروع</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 data-i18n="b.phone">الهاتف</h3>
+      <ul>
+        <li><span data-i18n="b.fayziah">فرع الفايزية</span>: <a class="num" href="tel:+966163844000" dir="ltr">016 384 4000</a></li>
+        <li><span data-i18n="b.sultanah">فرع سلطانة</span>: <a class="num" href="tel:+966163804000" dir="ltr">016 380 4000</a></li>
+        <li><span data-i18n="events.line">خط المناسبات</span>: <a class="num" href="tel:+966503844000" dir="ltr">050 384 4000</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer__base">© <span class="num">2026</span> <span data-i18n="footer.rights">أكلات جدودنا، بريدة</span></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الحجز | أكلات جدودنا</title>
+<meta name="description" content="احجز طاولة أو مناسبة في أكلات جدودنا، فرع الفايزية أو فرع سلطانة في بريدة.">
+<meta name="theme-color" content="#6c2721">
+<link rel="preload" href="assets/fonts/reemkufi-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+<script src="assets/app.js" defer></script>
+</head>
+<body data-title="meta.title.book">
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="mark" href="index.html" data-i18n="brand">أكلات جدودنا</a>
+    <ul class="nav__links">
+      <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+      <li><a href="menu.html" data-i18n="nav.menu">المنيو</a></li>
+      <li><a href="reservations.html" aria-current="page" data-i18n="nav.book">الحجز</a></li>
+    </ul>
+    <button class="lang" type="button"><i class="ph ph-translate" aria-hidden="true"></i><span data-i18n="lang">English</span></button>
+  </div>
+</header>
+
+<main>
+  <section class="pagehead on-maroon">
+    <div class="wrap pagehead__in">
+      <h1 class="sign-word ignite" data-i18n="book.title">الحجز</h1>
+      <p data-i18n="book.lead">عبّ الطلب ونرسله لنا على واتساب. نأكد معك الحجز بأقرب وقت.</p>
+    </div>
+    <div class="frieze" aria-hidden="true"></div>
+  </section>
+  <div class="wrap book">
+    <form class="form" id="book-form" novalidate>
+      <div class="field">
+        <label for="f-name" data-i18n="f.name">الاسم</label>
+        <input class="input" id="f-name" name="name" autocomplete="name" required aria-describedby="e-name">
+        <p class="err" id="e-name"><i class="ph ph-warning-circle" aria-hidden="true"></i><span data-i18n="e.name">اكتب اسمك.</span></p>
+      </div>
+      <div class="field">
+        <label for="f-phone" data-i18n="f.phone">رقم الجوال</label>
+        <input class="input num" id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required aria-describedby="h-phone e-phone">
+        <p class="hint" id="h-phone" data-i18n="f.phone.hint">مثال: 05xxxxxxxx</p>
+        <p class="err" id="e-phone"><i class="ph ph-warning-circle" aria-hidden="true"></i><span data-i18n="e.phone">اكتب رقم جوال سعودي يبدأ بـ 05 ومكون من ١٠ أرقام.</span></p>
+      </div>
+      <fieldset class="field field--full">
+        <legend data-i18n="f.branch">الفرع</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="branch" value="b.fayziah" checked><span><b data-i18n="b.fayziah">فرع الفايزية</b><small data-i18n="b.fayziah.addr">طريق الملك سعود، حي الفايزية</small></span></label>
+          <label class="choice"><input type="radio" name="branch" value="b.sultanah"><span><b data-i18n="b.sultanah">فرع سلطانة</b><small data-i18n="b.sultanah.addr">طريق الملك سلمان، حي سلطانة</small></span></label>
+        </div>
+      </fieldset>
+      <fieldset class="field field--full">
+        <legend data-i18n="f.type">نوع الحجز</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="type" value="f.type.table" checked><span><b data-i18n="f.type.table">طاولة</b><small data-i18n="f.type.table.s">عايلة أو أصحاب</small></span></label>
+          <label class="choice"><input type="radio" name="type" value="f.type.event"><span><b data-i18n="f.type.event">مناسبة</b><small data-i18n="f.type.event.s">عزيمة أو بوفيه</small></span></label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="f-date" data-i18n="f.date">التاريخ</label>
+        <input class="input num" id="f-date" name="date" type="date" required aria-describedby="e-date">
+        <p class="err" id="e-date"><i class="ph ph-warning-circle" aria-hidden="true"></i><span data-i18n="e.date">اختر تاريخ اليوم أو بعده.</span></p>
+      </div>
+      <div class="field">
+        <label for="f-time" data-i18n="f.time">الوقت</label>
+        <input class="input num" id="f-time" name="time" type="time" required aria-describedby="e-time">
+        <p class="err" id="e-time"><i class="ph ph-warning-circle" aria-hidden="true"></i><span data-i18n="e.time">اختر وقت الحجز.</span></p>
+      </div>
+      <div class="field">
+        <label for="f-guests" data-i18n="f.guests">عدد الأشخاص</label>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-i18n-label="f.minus" aria-label="إنقاص"><i class="ph ph-minus" aria-hidden="true"></i></button>
+          <input class="input num" id="f-guests" name="guests" type="number" min="1" max="200" value="4" inputmode="numeric" required aria-describedby="e-guests">
+          <button type="button" data-step="1" data-i18n-label="f.plus" aria-label="زيادة"><i class="ph ph-plus" aria-hidden="true"></i></button>
+        </div>
+        <p class="err" id="e-guests"><i class="ph ph-warning-circle" aria-hidden="true"></i><span data-i18n="e.guests">العدد من ١ إلى ٢٠٠.</span></p>
+      </div>
+      <div class="field field--full">
+        <label for="f-notes" data-i18n="f.notes">ملاحظات</label>
+        <textarea class="input" id="f-notes" name="notes" maxlength="300" data-i18n-ph="f.notes.ph" placeholder="مثال: نبي جلسة أرضية، أو عندنا طفل صغير"></textarea>
+      </div>
+      <div class="form__submit">
+        <button class="btn" type="submit"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i><span data-i18n="f.submit">أرسل الطلب عبر واتساب</span></button>
+        <p data-i18n="f.small">يفتح واتساب برسالة جاهزة. الحجز ما يتأكد إلا بعد ردنا عليك.</p>
+      </div>
+      <div class="done" id="book-done" tabindex="-1" role="status">
+        <h2 data-i18n="done.title">فتحنا لك واتساب</h2>
+        <p data-i18n="done.lead">أرسل الرسالة الجاهزة، ونرد عليك نأكد الحجز. لو ما فتح واتساب، اتصل علينا مباشرة.</p>
+        <button class="btn btn--sign" type="button" id="book-again"><i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i><span data-i18n="done.again">طلب حجز جديد</span></button>
+      </div>
+    </form>
+    <aside class="aside on-maroon" aria-labelledby="aside-h">
+      <div class="aside__in">
+        <h2 id="aside-h" data-i18n="aside.title">تفضّل الاتصال؟</h2>
+        <ul>
+          <li><b data-i18n="b.fayziah">فرع الفايزية</b><a class="num" href="tel:+966163844000" dir="ltr">016 384 4000</a><br><span data-i18n="b.fayziah.hours">يقفل ١٢ منتصف الليل</span></li>
+          <li><b data-i18n="b.sultanah">فرع سلطانة</b><a class="num" href="tel:+966163804000" dir="ltr">016 380 4000</a><br><span data-i18n="b.sultanah.hours">من بعد الفجر إلى ١ الفجر</span></li>
+          <li><b data-i18n="events.line">خط المناسبات</b><a class="num" href="tel:+966503844000" dir="ltr">050 384 4000</a></li>
+        </ul>
+      </div>
+      <div class="frieze" aria-hidden="true"></div>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer on-maroon">
+  <div class="frieze" aria-hidden="true"></div>
+  <div class="wrap footer__in">
+    <div>
+      <a class="mark" href="index.html" data-i18n="brand">أكلات جدودنا</a>
+      <p data-i18n="footer.about">مطعم شعبي في بريدة يقدم أكلات القصيم ونجد.</p>
+      <div class="social">
+        <a href="https://www.snapchat.com/@gododana" target="_blank" rel="noopener" aria-label="Snapchat @gododana"><i class="ph ph-snapchat-logo" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/61562399023446/" target="_blank" rel="noopener" aria-label="Facebook"><i class="ph ph-facebook-logo" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div>
+      <h3 data-i18n="footer.visit">زورونا</h3>
+      <ul>
+        <li><a href="menu.html" data-i18n="nav.menu">المنيو</a></li>
+        <li><a href="reservations.html" data-i18n="nav.book">الحجز</a></li>
+        <li><a href="index.html#branches" data-i18n="branches.title">الفروع</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 data-i18n="b.phone">الهاتف</h3>
+      <ul>
+        <li><span data-i18n="b.fayziah">فرع الفايزية</span>: <a class="num" href="tel:+966163844000" dir="ltr">016 384 4000</a></li>
+        <li><span data-i18n="b.sultanah">فرع سلطانة</span>: <a class="num" href="tel:+966163804000" dir="ltr">016 380 4000</a></li>
+        <li><span data-i18n="events.line">خط المناسبات</span>: <a class="num" href="tel:+966503844000" dir="ltr">050 384 4000</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer__base">© <span class="num">2026</span> <span data-i18n="footer.rights">أكلات جدودنا، بريدة</span></div>
+</footer>
+</body>
+</html>
